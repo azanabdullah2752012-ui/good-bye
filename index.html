@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You, Teachers!</title>
+    <meta name="description" content="A digital farewell memory board and tribute to our wonderful teachers.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Setup for glowing orbs in background -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <header class="hero" id="hero">
+        <div class="container hero-content">
+            <h1 class="fade-in-up">Thank You <br><span class="highlight">For Everything.</span></h1>
+            <p class="subtitle fade-in-up delay-1">A heartfelt tribute to the amazing teachers who shaped our journeys.</p>
+            <a href="#hall-of-fame" class="btn-primary fade-in-up delay-2">View the Tribute</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hall-of-fame" class="section">
+            <div class="container">
+                <h2 class="section-title">Hall of <span class="highlight">Fame</span></h2>
+                <div class="card-grid" id="teachers-grid">
+                    <!-- Teacher Cards will be generated dynamically or put statically here -->
+                    <div class="glass-card teacher-card">
+                        <div class="teacher-image placeholder-img"></div>
+                        <h3 class="teacher-name">Mr. Anderson</h3>
+                        <p class="teacher-subject">Mathematics</p>
+                        <p class="teacher-legacy">"Made numbers make sense and always had a joke ready."</p>
+                    </div>
+                    <div class="glass-card teacher-card">
+                        <div class="teacher-image placeholder-img-2"></div>
+                        <h3 class="teacher-name">Ms. Miller</h3>
+                        <p class="teacher-subject">Literature</p>
+                        <p class="teacher-legacy">"Taught us the power of storytelling and empathy."</p>
+                    </div>
+                    <div class="glass-card teacher-card">
+                        <div class="teacher-image placeholder-img-3"></div>
+                        <h3 class="teacher-name">Coach Davies</h3>
+                        <p class="teacher-subject">Physical Education</p>
+                        <p class="teacher-legacy">"More than a coach, a mentor who believed in every student."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="memory-wall" class="section">
+            <div class="container">
+                <h2 class="section-title">Memory <span class="highlight">Wall</span></h2>
+                <p class="section-subtitle">Messages of gratitude from students and staff.</p>
+                <div class="masonry-grid" id="messages-grid">
+                    <div class="message-note color-1">
+                        <p class="note-text">"I'll never forget the time Mr. Anderson helped me pass my final. Thank you for your endless patience!"</p>
+                        <span class="note-author">- Sarah T.</span>
+                    </div>
+                    <div class="message-note color-2">
+                        <p class="note-text">"Ms. Miller, your classroom was my safe space. We will miss you so much!"</p>
+                        <span class="note-author">- John D.</span>
+                    </div>
+                    <div class="message-note color-3">
+                        <p class="note-text">"Good luck in your next adventure, Coach! The team won't be the same."</p>
+                        <span class="note-author">- The Varsity Team</span>
+                    </div>
+                    <div class="message-note color-4">
+                        <p class="note-text">"You didn't just teach us subjects; you taught us how to be better people."</p>
+                        <span class="note-author">- Class of 2026</span>
+                    </div>
+                    <div class="message-note color-5">
+                        <p class="note-text">"Wishing you nothing but happiness and rest in your retirement!"</p>
+                        <span class="note-author">- Principal Harris</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wish-jar" class="section">
+            <div class="container">
+                <h2 class="section-title">The <span class="highlight">Wish Jar</span></h2>
+                <p class="section-subtitle">Click the jar to pull a special anonymous note.</p>
+                <div class="wish-jar-container">
+                    <div class="jar" id="jar-element">
+                        <div class="jar-lid"></div>
+                        <div class="jar-body">
+                            <span class="jar-label">Wishes</span>
+                        </div>
+                    </div>
+                    <div id="wish-display" class="wish-display hidden">
+                        <p id="wish-text"></p>
+                    </div>
+                    <button id="open-jar-button" class="btn-primary mt-4">Pull a Wish</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with love by your students. Goodbye, and good luck!</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
