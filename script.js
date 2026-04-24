@@ -115,36 +115,86 @@ document.addEventListener('DOMContentLoaded', () => {
     openJarBtn.addEventListener('click', pullWish);
     jarElement.addEventListener('click', pullWish);
 
-    // --- Edit Mode Logic ---
+    // --- Live Server Logic ---
     const editToggle = document.getElementById('edit-toggle');
-    const editableSelectors = 'h1, h2, h3, .subtitle, .teacher-name, .teacher-subject, .teacher-legacy, .note-text, .note-author';
-    const editableElements = document.querySelectorAll(editableSelectors);
+    let isEditMode = false;
+    
+    // Avatar mappings
+    const avatars = {
+        'Kavita Ma’am': '/assets/kavita.png',
+        'Khritika Ma’am': '/assets/khritika.png',
+        'Karthiyani Ma’am': '/assets/karthiyani.png'
+    };
 
-    // Initialize indexing and load saved content
-    editableElements.forEach((el, index) => {
-        const key = `editable_text_${index}`;
-        el.setAttribute('data-edit-key', key);
+    async function initApp() {
+        try {
+            // Fetch initial data from server
+            const res = await fetch('/api/data');
+            const data = await res.json();
+            
+            // 1. Render Teachers
+            const grid = document.getElementById('teachers-grid');
+            grid.innerHTML = '';
+            data.teachers.forEach(teacher => {
+                const imgPath = avatars[teacher.name] || '/assets/default.png';
+                grid.innerHTML += `
+                    <div class="glass-card teacher-card">
+                        <div class="teacher-image" style="background-image: url('${imgPath}')"></div>
+                        <h3 class="teacher-name" data-edit-key="teacher_${teacher.id}_name">${teacher.name}</h3>
+                        <p class="teacher-subject" data-edit-key="teacher_${teacher.id}_subject">${teacher.subject}</p>
+                        <p class="teacher-legacy" data-edit-key="teacher_${teacher.id}_message">"${teacher.message}"</p>
+                    </div>
+                `;
+            });
 
-        // Load if exists
-        const savedText = localStorage.getItem(key);
-        if (savedText && savedText !== el.innerHTML) {
-            el.innerHTML = savedText;
+            // 2. Sync all static Content Edits
+            const editableSelectors = 'h1, h2, h3, .subtitle, .teacher-name, .teacher-subject, .teacher-legacy, .note-text, .note-author';
+            const editableElements = document.querySelectorAll(editableSelectors);
+
+            editableElements.forEach((el, index) => {
+                let key = el.getAttribute('data-edit-key');
+                if (!key) {
+                    key = `static_text_${index}`;
+                    el.setAttribute('data-edit-key', key);
+                }
+
+                // If the server has a saved edit for this key, apply it
+                if (data.content && data.content[key]) {
+                    el.innerHTML = data.content[key];
+                }
+
+                // Listen for edits
+                el.addEventListener('blur', async () => {
+                    if (el.getAttribute('contenteditable') === 'true') {
+                        // Send single edit to server
+                        await fetch('/api/data', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                type: 'content_edit',
+                                key: key,
+                                value: el.innerHTML
+                            })
+                        });
+                    }
+                });
+            });
+
+            // Toggle logic
+            editToggle.addEventListener('change', (e) => {
+                isEditMode = e.target.checked;
+                const freshElements = document.querySelectorAll(editableSelectors);
+                freshElements.forEach(el => {
+                    el.setAttribute('contenteditable', isEditMode ? 'true' : 'false');
+                });
+            });
+
+        } catch (e) {
+            console.error('Failed to load live data', e);
         }
+    }
 
-        // Add auto-save listener
-        el.addEventListener('input', () => {
-            if (el.getAttribute('contenteditable') === 'true') {
-                localStorage.setItem(key, el.innerHTML);
-            }
-        });
-    });
-
-    // Toggle logic
-    editToggle.addEventListener('change', (e) => {
-        const isEditMode = e.target.checked;
-        editableElements.forEach(el => {
-            el.setAttribute('contenteditable', isEditMode ? 'true' : 'false');
-        });
-    });
+    // Start App
+    initApp();
 
 });
