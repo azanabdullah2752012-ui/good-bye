@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import EditableText from './EditableText';
 
 const TEACHERS = [
   {
@@ -6,21 +7,21 @@ const TEACHERS = [
     name: "Kavita Ma’am",
     subject: "Science",
     message: "Turned curiosity into confidence and made science feel alive.",
-    image: "/assets/math.png" // using placeholder names copied earlier
+    image: "/assets/kavita.png" // Fixed asset path
   },
   {
     id: 't2',
     name: "Khritika Ma’am",
     subject: "Mathematics",
     message: "Brought clarity to chaos and taught us to keep trying.",
-    image: "/assets/lit.png"
+    image: "/assets/khritika.png"
   },
   {
     id: 't3',
     name: "Karthiyani Ma’am",
     subject: "French",
     message: "Always patient, always supportive—even when we struggled.",
-    image: "/assets/pe.png"
+    image: "/assets/karthiyani.png"
   }
 ];
 
@@ -37,7 +38,7 @@ const cardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-export default function TeacherGrid() {
+export default function TeacherGrid({ isEditMode }) {
   return (
     <section id="hall-of-fame" className="section">
       <div className="container">
@@ -75,9 +76,9 @@ export default function TeacherGrid() {
                 className="teacher-image" 
                 style={{ backgroundImage: `url(${teacher.image})` }} 
               />
-              <h3 className="teacher-name">{teacher.name}</h3>
-              <p className="teacher-subject">{teacher.subject}</p>
-              <p className="teacher-legacy">"{teacher.message}"</p>
+              <EditableText id={`${teacher.id}_name`} isEditMode={isEditMode} as="h3" className="teacher-name" defaultText={teacher.name} />
+              <EditableText id={`${teacher.id}_subject`} isEditMode={isEditMode} as="p" className="teacher-subject" defaultText={teacher.subject} />
+              <EditableText id={`${teacher.id}_legacy`} isEditMode={isEditMode} as="p" className="teacher-legacy" defaultText={teacher.message} />
             </motion.div>
           ))}
         </motion.div>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import EditableText from './EditableText';
 
 const MESSAGES = [
   { text: "I'll never forget the time you stayed after class to help me. Thank you!", author: "Sarah T.", color: "color-1" },
@@ -8,7 +9,7 @@ const MESSAGES = [
   { text: "Wishing you nothing but happiness and rest in your new journey!", author: "Principal Harris", color: "color-5" }
 ];
 
-export default function MemoryWall() {
+export default function MemoryWall({ isEditMode }) {
   return (
     <section id="memory-wall" className="section">
       <div className="container">
@@ -33,7 +34,6 @@ export default function MemoryWall() {
         
         <div className="masonry-grid" id="messages-grid">
           {MESSAGES.map((msg, idx) => {
-            // Generate a random slight rotation between -3 and 3 degrees for organic feel
             const organicRotation = Math.random() * 6 - 3;
             
             return (
@@ -54,8 +54,8 @@ export default function MemoryWall() {
                   transition: { duration: 0.3 }
                 }}
               >
-                <p className="note-text">"{msg.text}"</p>
-                <span className="note-author">- {msg.author}</span>
+                <EditableText id={`msg_text_${idx}`} isEditMode={isEditMode} as="p" className="note-text" defaultText={msg.text} />
+                <EditableText id={`msg_author_${idx}`} isEditMode={isEditMode} as="span" className="note-author" defaultText={`- ${msg.author}`} />
               </motion.div>
             );
           })}
