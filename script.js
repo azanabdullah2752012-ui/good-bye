@@ -81,34 +81,4 @@ document.addEventListener('DOMContentLoaded', () => {
     openJarBtn.addEventListener('click', pullWish);
     jarElement.addEventListener('click', pullWish);
 
-
-    // --- Local Edit Mode Logic ---
-    const editToggle = document.getElementById('edit-toggle');
-    const editableSelectors = 'h1, h2, h3, .subtitle, .teacher-name, .teacher-subject, .teacher-legacy, .note-text, .note-author';
-    const editableElements = document.querySelectorAll(editableSelectors);
-
-    // Give each element a data-key and hook up localstorage
-    editableElements.forEach((el, index) => {
-        const key = `teacher_site_edit_${index}`;
-        
-        const savedText = localStorage.getItem(key);
-        if (savedText && savedText !== el.innerHTML) {
-            el.innerHTML = savedText;
-        }
-
-        el.addEventListener('input', () => {
-            if (el.getAttribute('contenteditable') === 'true') {
-                localStorage.setItem(key, el.innerHTML);
-            }
-        });
-    });
-
-    // Toggle switch logic
-    editToggle.addEventListener('change', (e) => {
-        const isEditMode = e.target.checked;
-        editableElements.forEach(el => {
-            el.setAttribute('contenteditable', isEditMode ? 'true' : 'false');
-        });
-    });
-
 });
