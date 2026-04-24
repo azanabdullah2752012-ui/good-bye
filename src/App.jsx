@@ -1,14 +1,30 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import TeacherGrid from './components/TeacherGrid';
 import MemoryWall from './components/MemoryWall';
 import WishJar from './components/WishJar';
+import EditableText from './components/EditableText';
 
 function App() {
+  const [isEditMode, setIsEditMode] = useState(false);
+
   return (
     <>
       <div className="bg-orb orb-1"></div>
       <div className="bg-orb orb-2"></div>
       <div className="bg-orb orb-3"></div>
+
+      <div className="edit-toggle-container">
+        <label className="switch">
+            <input 
+              type="checkbox" 
+              checked={isEditMode} 
+              onChange={(e) => setIsEditMode(e.target.checked)} 
+            />
+            <span className="slider round"></span>
+        </label>
+        <span className="edit-label">Edit Mode</span>
+      </div>
 
       <header className="hero" id="hero">
         <div className="container hero-content">
@@ -42,8 +58,8 @@ function App() {
       </header>
 
       <main>
-        <TeacherGrid />
-        <MemoryWall />
+        <TeacherGrid isEditMode={isEditMode} />
+        <MemoryWall isEditMode={isEditMode} />
         <WishJar />
       </main>
 
