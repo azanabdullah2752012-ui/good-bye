@@ -248,10 +248,16 @@ h1, h2, h3 {
   border: 4px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Placeholders */
-.placeholder-img { background: var(--gradient-1); }
-.placeholder-img-2 { background: var(--gradient-2); }
-.placeholder-img-3 { background: var(--gradient-3); }
+/* Placeholders become actual images */
+.placeholder-img { 
+  background-image: url("file:///Users/azan/.gemini/antigravity/brain/2daa8fe7-7af4-401a-b4ac-2e32d388a3df/teacher_math_avatar_1777051128031.png"); 
+}
+.placeholder-img-2 { 
+  background-image: url("file:///Users/azan/.gemini/antigravity/brain/2daa8fe7-7af4-401a-b4ac-2e32d388a3df/teacher_lit_avatar_1777051152355.png"); 
+}
+.placeholder-img-3 { 
+  background-image: url("file:///Users/azan/.gemini/antigravity/brain/2daa8fe7-7af4-401a-b4ac-2e32d388a3df/teacher_pe_avatar_1777051168131.png"); 
+}
 
 .teacher-name {
   font-size: 1.8rem;
