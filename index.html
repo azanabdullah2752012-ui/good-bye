@@ -1,17 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You, Teachers!</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Edit Mode Toggle -->
+    <div class="edit-toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="edit-toggle">
+            <span class="slider round"></span>
+        </label>
+        <span class="edit-label">Edit Mode</span>
+    </div>
+
+    <header class="hero" id="hero">
+        <div class="container hero-content">
+            <h1 class="fade-in-up">Thank You <br><span class="highlight">For Everything.</span></h1>
+            <p class="subtitle fade-in-up delay-1">A heartfelt tribute to the amazing teachers who shaped our journeys.</p>
+            <a href="#hall-of-fame" class="btn-primary fade-in-up delay-2">View the Tribute</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hall-of-fame" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Hall of <span class="highlight">Fame</span></h2>
+                <div class="card-grid" id="teachers-grid">
+                    
+                    <div class="glass-card teacher-card fade-in delay-1">
+                        <div class="teacher-image" style="background-image: url('assets/kavita.png');"></div>
+                        <h3 class="teacher-name">Kavita Ma’am</h3>
+                        <p class="teacher-subject">Science</p>
+                        <p class="teacher-legacy">"Turned curiosity into confidence and made science feel alive."</p>
+                    </div>
+
+                    <div class="glass-card teacher-card fade-in delay-2">
+                        <div class="teacher-image" style="background-image: url('assets/khritika.png');"></div>
+                        <h3 class="teacher-name">Khritika Ma’am</h3>
+                        <p class="teacher-subject">Mathematics</p>
+                        <p class="teacher-legacy">"Brought clarity to chaos and taught us to keep trying."</p>
+                    </div>
+
+                    <div class="glass-card teacher-card fade-in delay-3">
+                        <div class="teacher-image" style="background-image: url('assets/karthiyani.png');"></div>
+                        <h3 class="teacher-name">Karthiyani Ma’am</h3>
+                        <p class="teacher-subject">French</p>
+                        <p class="teacher-legacy">"Always patient, always supportive—even when we struggled."</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="memory-wall" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">Memory <span class="highlight">Wall</span></h2>
+                <p class="section-subtitle fade-in delay-1">Messages of gratitude from students and staff.</p>
+                <div class="masonry-grid" id="messages-grid">
+                    <div class="message-note color-1 fade-in delay-1" style="transform: rotate(-2deg);">
+                        <p class="note-text">"I'll never forget the time you stayed after class to help me. Thank you!"</p>
+                        <span class="note-author">- Sarah T.</span>
+                    </div>
+                    <div class="message-note color-2 fade-in delay-2" style="transform: rotate(1deg);">
+                        <p class="note-text">"Your classroom was my safe space. We will miss you so much!"</p>
+                        <span class="note-author">- John D.</span>
+                    </div>
+                    <div class="message-note color-3 fade-in delay-3" style="transform: rotate(-1deg);">
+                        <p class="note-text">"Good luck in your next adventure! The school won't be the same."</p>
+                        <span class="note-author">- Class of 2026</span>
+                    </div>
+                    <div class="message-note color-4 fade-in delay-1" style="transform: rotate(2deg);">
+                        <p class="note-text">"You didn't just teach us subjects; you taught us how to be better people."</p>
+                        <span class="note-author">- Aryan</span>
+                    </div>
+                    <div class="message-note color-5 fade-in delay-2" style="transform: rotate(-3deg);">
+                        <p class="note-text">"Wishing you nothing but happiness and rest in your new journey!"</p>
+                        <span class="note-author">- Principal Harris</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wish-jar" class="section">
+            <div class="container">
+                <h2 class="section-title fade-in">The <span class="highlight">Wish Jar</span></h2>
+                <p class="section-subtitle fade-in delay-1">Click the jar to pull a special anonymous note.</p>
+                <div class="wish-jar-container fade-in delay-2">
+                    <div class="jar" id="jar-element">
+                        <div class="jar-lid"></div>
+                        <div class="jar-body">
+                            <span class="jar-label">Wishes</span>
+                        </div>
+                    </div>
+                    <div id="wish-display" class="wish-display hidden">
+                        <p id="wish-text"></p>
+                    </div>
+                    <button id="open-jar-button" class="btn-primary mt-4">Pull a Wish</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Made with love by your students. Goodbye, and good luck!</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
