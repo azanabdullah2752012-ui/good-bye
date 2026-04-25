@@ -39,9 +39,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-primary);
-  background-color: #e0f2fe;
-  background-image: radial-gradient(#7dd3fc 3px, transparent 3px);
-  background-size: 40px 40px;
+  background: linear-gradient(135deg, #cffafe 0%, #fbcfe8 100%);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
